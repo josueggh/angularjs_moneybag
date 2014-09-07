@@ -8,8 +8,6 @@ mainApp.controller('bagController', ['$scope','localStorageService' ,
     $scope.accounts     = localStorageService.get('accounts');
     $scope.history     = localStorageService.get('history');
 
-    console.log($scope.history);
-
     $scope.updateBucket = function(){
       $scope.bucket= 0;
       angular.forEach( $scope.tobucket, function(value, key){
@@ -60,7 +58,7 @@ mainApp.controller('historyController', ['$scope','localStorageService' ,
           if( $scope.history[index-2][key] > $scope.history[index-1][key] ){
             return false;
           }
-          
+
         }
       }
       return true;
