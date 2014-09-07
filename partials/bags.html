@@ -1,0 +1,48 @@
+<div class="row">
+
+  <div class="col-md-3">
+    <div class="alert alert-success" role="alert">
+      Your <strong>bucket</strong> balance is  : <strong>{{bucket | currency : "$"}}</strong>
+    </div>
+    
+    <button type="button" class="btn btn-default" ng-disabled="!bucket" ng-click="createAccount();">
+      New account <span class="glyphicon glyphicon-arrow-right"></span>
+    </button>
+
+    <button type="button" class="btn btn-default" ng-disabled="bucket" ng-click="save()">
+      Save <span class="glyphicon glyphicon-save"></span>
+    </button>
+  </div>
+
+  <div class="col-md-9">
+
+    <div class="row">
+      <div class="account col-md-3" ng-repeat="(account,ammount) in accounts">
+        
+        <h4 class="text-center">Account {{$index+1}}</h4>
+
+        <account-chart 
+          initial="ammount" 
+          tobucket="tobucket[account]" 
+          frombucket="frombucket[account]"
+          ng-init="tobucket[account]=0;frombucket[account]=0;">
+        </account-chart>
+
+        <div class="text-center alert alert-success">
+          {{ammount-tobucket[account]+frombucket[account] | currency : "$"}}
+        </div>
+
+        <div class="row">
+          <label class="col-md-7">To bucket : </label>
+          <input class="col-md-5  " type="number" ng-model="tobucket[account]"  min="0" max="{{ammount}}" ng-change="updateBucket()"/> 
+        </div>
+
+        <div class="row">
+          <label class="col-md-7">From bucket : </label>
+          <input class="col-md-5" type="number" ng-model="frombucket[account]"  min="0" max="{{bucket+frombucket[account]}}" ng-change="updateBucket()"/>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
