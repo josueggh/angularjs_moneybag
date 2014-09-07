@@ -6,7 +6,7 @@ mainApp.controller('bagController', ['$scope','localStorageService' ,
     $scope.tobucket     = {};
     $scope.frombucket   = {}
     $scope.accounts     = localStorageService.get('accounts');
-    $scope.history     = localStorageService.get('history');
+    $scope.history      = localStorageService.get('history');
 
     $scope.updateBucket = function(){
       $scope.bucket= 0;

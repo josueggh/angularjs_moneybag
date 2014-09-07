@@ -31,11 +31,11 @@ mainApp.run( function (localStorageService){
 mainApp.config(['$routeProvider',
   function($routeProvider){
     $routeProvider.
-      when('/money', { 
+      when('/money', {
         templateUrl : '/partials/bags.html',
         controller  : 'bagController'
       })
-      .when('/history', { 
+      .when('/history', {
         templateUrl : '/partials/history.html',
         controller  : 'historyController'
       })
