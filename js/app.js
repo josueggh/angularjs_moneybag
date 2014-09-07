@@ -13,12 +13,17 @@ mainApp.run( function (localStorageService){
 
     var initial_accounts = 2;
     var accounts = {};
-
+    var history = [];
+    var d = new Date(); 
+    
     for(var i =1; i<= initial_accounts; i++){
-      accounts['account'+i] = Math.floor(Math.random() * 100) + 5;
+      accounts['account'+ d.getTime() + (i*100) ] = Math.floor(Math.random() * 100) + 5;
     }
 
+    history.push( accounts);
+
     localStorageService.set('accounts' , JSON.stringify( accounts )); 
+    localStorageService.set('history'  , JSON.stringify( history  ))
   }
 
 });
@@ -26,12 +31,16 @@ mainApp.run( function (localStorageService){
 mainApp.config(['$routeProvider',
   function($routeProvider){
     $routeProvider.
-      when('/bags', { 
+      when('/money', { 
         templateUrl : '/partials/bags.html',
         controller  : 'bagController'
       })
+      .when('/history', { 
+        templateUrl : '/partials/history.html',
+        controller  : 'historyController'
+      })
       .otherwise({
-        redirectTo : '/bags'
+        redirectTo : '/money'
       });
   }
 ]);
